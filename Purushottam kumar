@@ -1,0 +1,45 @@
+package Highpeaksoftware.submission;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
+
+
+
+	public class Highpeaksoftware{
+		
+		static int minDiff(int arr[], int n , int m) {
+			int result=Integer.MAX_VALUE;
+			Arrays.sort(arr);
+			for(int i=0;i<=n-m;i++)
+				result = Math.min(result,arr[i+m-1]-arr[i]);
+			return result;
+		}
+		static int findele(int res, int arr[],int n,int m) {
+			int result = Integer.MAX_VALUE;
+			for(int i=0; i<=n;i++) {
+				result=Math.min(result, arr[i+m-1]-arr[i]);
+				if(res==result)
+					return i;
+			}
+			
+					return 0;
+					
+		}
+		public static void main(String[] args) {
+			int arr[]= {7980,22349,999,2799,229900,11101,9999,2195,9800,4999};
+			String items[]= {"mi band:999","sandwich toaster:2195","cult pass:2799","scale:4999","fitbit plus:7980","microwave oven:9800","alexa:9999","digital camera:11101","ipods:22349","macbook pro:229900"};
+			int n=arr.length;
+			System.out.println("enter the number of employees:");
+			Scanner sc = new Scanner(System.in);
+			int m=sc.nextInt();
+			int result=minDiff(arr,n,m);
+			System.out.println("number of employees:"+m);
+			int startindex=findele(result,arr,n,m);
+			System.out.println("these are the goods selected for distribution:");
+			for(int i=startindex;i<startindex+m;i++) 
+				System.out.println(items[i]);
+				System.out.println("and the difference between the chosen goodie with highest price and lowest price is: "+result);
+		
+			
+		}
+}
